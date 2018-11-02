@@ -1,14 +1,10 @@
 const express = require("express");
 const app = express();
-const sessions = {
-  monday: [{ title: "lolo", time: "8:00-9:00" }],
-  tuesday: [{ title: "lala", time: "9:00-10:00" }],
-  wednesday: [{ title: "lele", time: "10:00-11:00" }]
-};
+const MESSAGE = process.env.MESSAGE;
 
 app.get("/", function(req, res) {
   console.log("Received a request.");
-  res.send(sessions);
+  res.send(MESSAGE);
 });
 
 const port = process.env.PORT || 8080;

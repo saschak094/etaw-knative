@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: knative-sessions
+  namespace: default
+spec:
+  pinned:
+    revisionName: knative-sessions-00001
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: gcr.io/just-terminus-219317/knative-session-randomizer:2.0
+            name: ""
+            resources: {}

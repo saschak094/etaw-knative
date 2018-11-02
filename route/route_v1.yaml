@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: knative-sessions
+  namespace: default
+spec:
+  traffic:
+    - percent: 50
+      revisionName: knative-sessions-00001
+    - percent: 50
+      revisionName: knative-sessions-00002
+      name: v2
