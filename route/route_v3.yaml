@@ -6,7 +6,6 @@ metadata:
 spec:
   traffic:
     - revisionName: knative-sessions-00001
-      percent: 100
-    - revisionName: knative-sessions-00002
       percent: 0
-      name: v2
+    - revisionName: knative-sessions-00002
+      percent: 100

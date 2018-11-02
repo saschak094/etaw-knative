@@ -1,4 +1,4 @@
-# knative-sessions
+# etaw-knative
 
 ## Build
 
@@ -12,10 +12,10 @@ kubectl create -f build/build.yaml
 
 ## Serve
 
-Once the image is built, create your knative service
+Once the image is built, create your knative configuration
 
 ```bash
-kubectl create -f service/service.yaml
+kubectl create -f configuration/configuration_v1.yaml
 ```
 
 To test if your service is properly running execute the following commands.
@@ -46,32 +46,61 @@ Call your service
 curl --header "Host:$SERVICE_HOST" http://$SERVICE_IP
 ```
 
-## Route
+## Revision v2
 
-Adapt the source code and push to your git repository.
-
-Update the name of the [build file](/build/build.yaml) so that it is recognized as new build.
-
-```yaml
-name: knative-sessions-build-v2
-```
-
-Increase the destination image tag inside the [build file](/build/build.yaml)
-
-```yaml
-- --destination=gcr.io/just-terminus-219317/knative-session-randomizer:2.0
-```
-
-Start the build again
+Deploy the second configuration of your application, which will create a second revision with different environment variables.
 
 ```bash
-kubectl create -f build/build.yaml
+kubectl create -f configuration/configuration_v2
 ```
 
-Once the build is done, apply the new service version
+## Routes
+
+### Staging
+
+Deploy the first route version
 
 ```bash
-kubectl apply -f service/service_v2.yaml
+kubectl create -f route/route_v1.yaml
 ```
 
-You might recognize that a new revision of the service will be created but the when you try to curl it will still show the response of the first version.
+That elevates your second revision as stage deployment.
+Curl will still show **Blue** (v1) as result
+
+```bash
+curl --header "Host:$SERVICE_HOST" http://$SERVICE_IP
+```
+
+But with the staging feature you can curl the second revision specifing the version number, the result should show **Green**
+
+```bash
+curl --header "Host:v2.$SERVICE_HOST" http://$SERVICE_IP
+```
+
+### Canary
+
+Deploy the second route version
+
+```bash
+kubectl create -f route/route_v2.yaml
+```
+
+Curl should show equally often **Green** and **Blue** as result
+
+```bash
+curl --header "Host:$SERVICE_HOST" http://$SERVICE_IP
+```
+
+### Routing to new version
+
+Deploy the third route version
+
+```bash
+kubectl create -f route/route_v3.yaml
+```
+
+The curl result shows only **Green** as result
+
+```bash
+curl --header "Host:$SERVICE_HOST" http://$SERVICE_IP
+```

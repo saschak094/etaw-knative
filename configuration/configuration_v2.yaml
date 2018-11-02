@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Configuration
+metadata:
+  name: knative-sessions
+  namespace: default
+spec:
+  revisionTemplate:
+    spec:
+      container:
+        env:
+          - name: MESSAGE
+            value: GREEN
+        image: gcr.io/just-terminus-219317/knative-session-randomizer:latest
+        name: ""
+        resources: {}
