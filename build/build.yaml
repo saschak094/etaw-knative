@@ -1,0 +1,15 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: knative-sessions-build
+spec:
+  source:
+    git:
+      url: https://github.com/saschak094/knative-sessions
+      revision: master
+  steps:
+    - name: build-and-push
+      image: gcr.io/kaniko-project/executor
+      args:
+        - --dockerfile=/workspace/Dockerfile
+        - --destination=gcr.io/just-terminus-219317/knative-session-randomizer
