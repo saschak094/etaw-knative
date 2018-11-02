@@ -6,6 +6,6 @@ metadata:
 spec:
   traffic:
     - revisionName: etaw-knative-00001
-      percent: 50
+      percent: 0
     - revisionName: etaw-knative-00002
-      percent: 50
+      percent: 100

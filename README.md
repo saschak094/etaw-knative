@@ -18,11 +18,17 @@ Once the image is built, create your knative configuration
 kubectl create -f configuration/configuration_v1.yaml
 ```
 
+Create a route for you service to make it available for calls
+
+```bash
+kubectl create -f route/route_v1.yaml
+```
+
 To test if your service is properly running execute the following commands.
 Retrieve the hostname that your service is deployed with
 
 ```bash
-export SERVICE_HOST=`kubectl get route knative-sessions -n=default --output jsonpath="{.status.domain}"`
+export SERVICE_HOST=`kubectl get route etaw-knative -n=default --output jsonpath="{.status.domain}"`
 ```
 
 If you are running on **GKE** you can retrieve the public IP of the knative ingress-gateway with the command below
@@ -58,10 +64,10 @@ kubectl create -f configuration/configuration_v2
 
 ### Staging
 
-Deploy the first route version
+Deploy the second route version
 
 ```bash
-kubectl create -f route/route_v1.yaml
+kubectl create -f route/route_v2.yaml
 ```
 
 That elevates your second revision as stage deployment.
@@ -79,10 +85,10 @@ curl --header "Host:v2.$SERVICE_HOST" http://$SERVICE_IP
 
 ### Canary
 
-Deploy the second route version
+Deploy the third route version
 
 ```bash
-kubectl create -f route/route_v2.yaml
+kubectl create -f route/route_v3.yaml
 ```
 
 Curl should show equally often **Green** and **Blue** as result
@@ -93,10 +99,10 @@ curl --header "Host:$SERVICE_HOST" http://$SERVICE_IP
 
 ### Routing to new version
 
-Deploy the third route version
+Deploy the fourth route version
 
 ```bash
-kubectl create -f route/route_v3.yaml
+kubectl create -f route/route_v4.yaml
 ```
 
 The curl result shows only **Green** as result

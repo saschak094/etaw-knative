@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Configuration
 metadata:
-  name: knative-sessions
+  name: etaw-knative
   namespace: default
 spec:
   revisionTemplate:
@@ -10,4 +10,4 @@ spec:
         env:
           - name: MESSAGE
             value: BLUE
-        image: gcr.io/just-terminus-219317/knative-session-randomizer:latest
+        image: gcr.io/just-terminus-219317/etaw-knative:latest

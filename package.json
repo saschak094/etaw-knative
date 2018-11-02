@@ -1,5 +1,5 @@
 {
-  "name": "knative-sessions",
+  "name": "etaw-knative",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saschak094/knative-sessions.git"
+    "url": "git+https://github.com/saschak094/etaw-knative.git"
   },
   "author": "sascha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/saschak094/knative-sessions/issues"
+    "url": "https://github.com/saschak094/etaw-knative/issues"
   },
-  "homepage": "https://github.com/saschak094/knative-sessions#readme",
+  "homepage": "https://github.com/saschak094/etaw-knative#readme",
   "dependencies": {
     "express": "^4.16.4"
   }
