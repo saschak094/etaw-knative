@@ -1,5 +1,9 @@
 # etaw-knative
 
+##Preqrequesites
+
+This tutorial requires you to have an up and running GKE cluster with knative installed.
+
 ## Build
 
 Make sure you are authorized to access the registry from your namepsace

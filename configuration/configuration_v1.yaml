@@ -11,3 +11,4 @@ spec:
           - name: MESSAGE
             value: BLUE
         image: gcr.io/just-terminus-219317/etaw-knative:latest
+        imagePullPolicy: Always
