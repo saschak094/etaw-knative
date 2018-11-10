@@ -24,3 +24,5 @@ Call the service with:
 ```bash
 curl -H "Host: etaw-knative.default.example.com" http://minikube_ip:nodePort  -w "\n"
 ```
+
+Furthermore you need to change the kaniko image to cr.io/kaniko-project/executor:v0.1.0, cause the latest version can't handle the preconfigured service accounts with registry credentials.

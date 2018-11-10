@@ -1,17 +1,17 @@
 apiVersion: build.knative.dev/v1alpha1
 kind: Build
 metadata:
-  name: knative-build-etaw
+  name: etaw-knative-build
 spec:
   # needed for minikube on GKE automatically configured
-  #serviceAccountName: knative-build
+  # serviceAccountName: riff-build
   source:
     git:
       url: https://github.com/saschak094/etaw-knative
       revision: master
   steps:
     - name: build-and-push
-      image: gcr.io/kaniko-project/executor:v0.1.0
+      image: gcr.io/kaniko-project/executor
       args:
         - --dockerfile=/workspace/Dockerfile
         - --destination=gcr.io/just-terminus-219317/etaw-knative
