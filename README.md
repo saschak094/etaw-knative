@@ -1,6 +1,6 @@
 # etaw-knative
 
-##Preqrequesites
+## Preqrequesites
 
 This tutorial requires you to have an up and running GKE cluster with knative installed.
 
